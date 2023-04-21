@@ -1,49 +1,37 @@
 let form = document.forms.calc;
-para = document.querySelector('p');
-//time1 = document.getElementsByName("1");
-//time2 = document.getElementsByName("2");
-//time3 = document.getElementsByName("3");
-//time4 = document.getElementsByName("4");
-//time5 = document.getElementsByName("5");
-//time6 = document.getElementsByName("6");
-//form.type.onchange=set_time;
-form.type.onchange=calculate;
-form.type.onchange=calculate;
-form.time.onchange=calculate;
-form.money.oninput = calculate;
-//function set_time (){
-
-//if(type==="refillable")
-    //{
-        //time1.textContent = ""; 
-        //time2.textContent = "6 месяцев";
-        //time3.textContent = "";
-        //time4.textContent = "1 год";
-        //time5.textContent = "1,5 года";
-        //time6.textContent = "2 года";
-    //}
-//else
-    //{
-        //time1.textContent = "3 месяца"; 
-        //time2.textContent = "6 месяцев";
-        //time3.textContent = "9 месяцев";
-        //time4.textContent = "1 год";
-        //time5.textContent = "1,5 года";
-        //time6.textContent = "2 года";
-
-    //}
-    
-//}
-//set_time();
+form.type.onchange=set_time;
+function set_time (){
+    let type=form.type.value;
+    let selecter = document.getElementById('setPlace');
+    if(type==="Пополняемый")
+    {
+        selecter.innerHTML=
+        '<option value="6">6 месяцев</option>'+
+        '<option value="12">1 год</option>'+
+        '<option value="18">1,5 года</option>'+
+        '<option value="24">2 года</option>';
+    }
+    else
+    {
+        selecter.innerHTML=
+        '<option value="3">3 месяца</option>' +
+        '<option value="6">6 месяцев</option>'+
+        '<option value="9">9 месяцев</option>'+
+        '<option value="12">1 год</option>'+
+        '<option value="18">1,5 года</option>'+
+        '<option value="24">2 года</option>';
+    }
+}
+set_time();
 
 function calculate(){
     let type=form.type.value;
     let initial = form.money.value;
-    let time = form.months.value; 
+    let time = form.time.value; 
     let bid=1;
-    if (!initial) return;
-    if (!time) return;
-    if(type==="refillable")
+    if (!initial) return false;
+    if (!time) return false;
+    if(type==="Пополняемый")
     {
         switch(time)
         {
@@ -95,8 +83,12 @@ function calculate(){
         }
     }    
     let result = Math.round(initial * (1 + bid));
-    para.textContent="Вклад "+(type)+" на срок "+(time)+" на сумму "+(initial)+
-                    " руб.\nВ конце срока вы получите "+(result)+" руб."
+    let textOutput = document.getElementById('output');
+    textOutput.innerHTML = "Вклад "+(type)+" на срок "+(time)+" месяца на сумму "+(initial)+
+    " руб.\nВ конце срока вы получите "+(result)+" руб.";
+    return false;                
 
 }
-calculate();
+let sendButton = form.solve;
+sendButton.addEventListener("click", calculate);
+

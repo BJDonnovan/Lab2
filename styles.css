@@ -33,3 +33,51 @@ body {
   height: 20%;
   object-fit: cover;
 }
+
+.solvebox{
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.leftbox{
+  min-width: 300px;
+  min-height: 200px;
+  padding: 1%;
+}
+
+.rightbox{
+  min-width: 300px;
+  min-height: 200px;
+  padding: 1%;
+}
+
+.listbox{
+  min-width: 200px;
+  min-height: 50px;
+  padding: 1%; 
+}
+
+.textbox{
+  min-width: 290px;
+  min-height: 190px;
+  border: 2px;
+  border-style: solid;
+  border-color: blue;
+}
+
+.selecter{
+  min-width: 200px;
+  min-height: 50px;
+}
+
+.input{
+  min-width: 192px;
+  min-height: 50px;
+}
+
+.button{
+  min-width: 200px;
+  min-height: 50px;
+}
